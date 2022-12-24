@@ -18,8 +18,7 @@ export class CreateBookingComponent implements OnInit{
   ngOnInit(): void {
     if(this.router.url!= '/create'){
       let id = Number(this.activatedRoute.snapshot.paramMap.get('id'));
-      let bookingById = this.bookingService.getBookingById(id);
-      this.booking = bookingById;
+       this.bookingService.getBookingById(id).subscribe((result =>{this.booking = result}));
     }
 
   }
@@ -33,14 +32,9 @@ export class CreateBookingComponent implements OnInit{
   }
    
   save(): void{
-
-    let bookingById = this.bookingService.getBookingById(this.booking.id);
-
-    if(bookingById == null || bookingById == undefined){
-      this.bookingService.addBooking(this.booking);
-    }else{
-      this.bookingService.updateBooking(this.booking);
-    }
+    // Der Post legt ein neues Objekt an und updates es auch.
+    this.bookingService.addBooking(this.booking).subscribe();
+   
     
     this.router.navigate(['bookings']);
   }

@@ -14,13 +14,15 @@ constructor(private bookingService: BookingService){
 
 }
   ngOnInit(): void {
-    this.bookings = this.bookingService.getBookings();
+    // subscribe -> asynchron. wartet auf die Antwort. Wenn die Antwort da ist wird this.bookings mit dem inhalt aus result befüllt.
+    this.bookingService.getBookings().subscribe((result) => {this.bookings = result});
   }
 
 
 deleteBooking(booking: Booking): void{
 
-  this.bookingService.deleteBooking(booking);
+  this.bookingService.deleteBooking(booking).subscribe();
+  this.bookingService.getBookings().subscribe((result) => {this.bookings = result});
 }
 
 }
