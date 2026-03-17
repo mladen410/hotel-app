@@ -1,0 +1,8 @@
+com\hotelapp\backend\repository\ReservationRepository.class
+com\hotelapp\backend\controller\ReservationController.class
+com\hotelapp\backend\api\model\ReservationDto.class
+com\hotelapp\backend\service\ReservationService.class
+com\hotelapp\backend\BackendApplication.class
+com\hotelapp\backend\api\ReservationApi.class
+com\hotelapp\backend\model\Reservation.class
+com\hotelapp\backend\api\ApiUtil.class

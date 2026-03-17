@@ -1,0 +1,134 @@
+openapi: 3.0.3
+info:
+  title: Hotel API
+  description: API for managing hotel reservations.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+paths:
+  /reservations:
+    get:
+      summary: Get all reservations
+      operationId: getAllReservations
+      tags:
+        - Reservation
+      responses:
+        '200':
+          description: A list of reservations
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Reservation'
+  /reservation:
+    post:
+      summary: Create a new reservation
+      operationId: createReservation
+      tags:
+        - Reservation
+      requestBody:
+        description: Reservation to create
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+      responses:
+        '201':
+          description: Reservation created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+        '500':
+          description: Internal server error
+  /reservation/{id}:
+    get:
+      summary: Get a reservation by ID
+      operationId: getReservationById
+      tags:
+        - Reservation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '200':
+          description: Reservation found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+        '404':
+          description: Reservation not found
+    put:
+      summary: Update a reservation
+      operationId: updateReservation
+      tags:
+        - Reservation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      requestBody:
+        description: Updated reservation data
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reservation'
+      responses:
+        '200':
+          description: Reservation updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reservation'
+        '404':
+          description: Reservation not found
+    delete:
+      summary: Delete a reservation
+      operationId: deleteReservation
+      tags:
+        - Reservation
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            format: int64
+      responses:
+        '204':
+          description: Reservation deleted
+        '500':
+          description: Internal server error
+
+components:
+  schemas:
+    Reservation:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          readOnly: true
+        guestName:
+          type: string
+        guestEmail:
+          type: string
+        roomNumber:
+          type: integer
+        checkInDate:
+          type: string
+          format: date
+        checkOutDate:
+          type: string
+          format: date
