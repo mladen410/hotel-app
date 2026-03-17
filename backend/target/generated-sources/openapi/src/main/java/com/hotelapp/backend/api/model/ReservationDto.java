@@ -22,7 +22,7 @@ import jakarta.annotation.Generated;
  */
 
 @JsonTypeName("Reservation")
-@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-03-17T23:05:52.143650100+01:00[Europe/Berlin]", comments = "Generator version: 7.4.0")
+@Generated(value = "org.openapitools.codegen.languages.SpringCodegen", date = "2026-03-17T23:21:51.042548900+01:00[Europe/Berlin]", comments = "Generator version: 7.4.0")
 public class ReservationDto {
 
   private Long id;
